@@ -41,6 +41,9 @@ const ArticleBody = styled("article", {
   flexDirection: "column",
   gap: "1rem",
   color: "rgb(27,41,64)",
+  "& a:hover": {
+    opacity: "0.8",
+  },
 });
 
 const Section = styled("section", {
