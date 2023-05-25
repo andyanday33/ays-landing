@@ -53,6 +53,7 @@ const MenuItem = styled(NavigationMenu.Item, {
   width: "fit-content",
   padding: "1rem 1rem",
   borderRadius: "0.25rem",
+  textTransform: "uppercase",
   cursor: "pointer",
   "&:hover": {
     backgroundColor: "rgba(255, 255, 255, 0.1)",

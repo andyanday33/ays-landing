@@ -3,8 +3,39 @@ import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { AppBar } from "@/components/AppBar";
+import { styled } from "@stitches/react";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const Container = styled("main", {
+  display: "flex",
+  alignItems: "center",
+  gap: "1rem",
+  flexDirection: "column",
+  color: "rgb(27,41,64)",
+  boxShadow: "0px 5px 15px -5px rgba(0, 0, 0, 0.1)",
+  margin: "1.5rem",
+  padding: "1.5rem",
+});
+
+const ArticleBody = styled("article", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "1rem",
+  color: "rgb(27,41,64)",
+});
+
+const Section = styled("section", {
+  display: "flex",
+  flexDirection: "column",
+  "& > h2": {
+    fontSize: "1.2rem",
+    fontWeight: "bold",
+    color: "rgb(27,41,64)",
+  },
+});
+
+const TechStack = styled(Section, {});
 
 export default function Home() {
   return (
@@ -15,10 +46,52 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${styles.main} ${inter.className}`}>
-        <AppBar />
-        <h1 className={styles.title}>AYS: Afet Yönetim Sistemi</h1>
-      </main>
+      <AppBar />
+      <Container className={`${inter.className}`}>
+        <h1>AYS: Afet Yönetim Sistemi</h1>
+        <p>Afet yönetim sistemine hoşgeldiniz.</p>
+        <ArticleBody>
+          <p>
+            Merhaba 👋
+            <br />
+            Afet Yönetim Sistemi, gönüllü olarak,{" "}
+            <a href={"https://github.com/acikkaynak/afet-org/discussions/35"}>
+              discussion
+            </a>{" "}
+            alanındaki fikri hayata geçirmek için katkı sağlayan bir
+            topluluktur.
+          </p>
+          <Section>
+            <h2>Özet</h2>
+            <br />
+            <ul>
+              <li>
+                Gönüllü olarak kişilerin afet bölgesine kişi ve/veya alet edevat
+                taşımasındaki süreci bir kuruma bağlı gerçekleştirmesi{" "}
+              </li>
+              <li>Bu süreçte kişilerin güvenliğinin sağlanması </li>
+              <li>Kurumun koordinasyonunun sağlanması </li>
+              <li>Doğru envanterin doğru konuma gönderilmesi.</li>
+            </ul>
+          </Section>
+          <Section>
+            <h2>Tech stack</h2>
+            <br />
+            <ul>
+              <li> Back-End: `Java17`, `Spring Boot 3`, `Docker`, `MySQL` </li>
+              <li>- Front-End: `React.js`, `Angular.js` </li>
+              <li>- iOS: `Swift` </li>
+              <li>- Android: `Kotlin, Flutter` </li>
+              <li>- UI/UX Design: `Figma` </li>
+              <li>- Product: `Github Project` </li>
+              <li>
+                - Discord Moderating: `Oryantasyon`, `Organizasyon Botları`{" "}
+              </li>
+              <li>- Test: `-` </li>
+            </ul>
+          </Section>
+        </ArticleBody>
+      </Container>
     </>
   );
 }
