@@ -1,11 +1,29 @@
 import Head from "next/head";
-import Image from "next/image";
 import { Inter } from "next/font/google";
 import styles from "@/styles/Home.module.css";
 import { AppBar } from "@/components/AppBar";
 import { styled } from "@stitches/react";
+import { SiDiscord, SiGithub } from "react-icons/si";
+import { IconType } from "react-icons";
 
 const inter = Inter({ subsets: ["latin"] });
+
+const data = [
+  {
+    Title: "Discord ",
+    icon: SiDiscord,
+    Description:
+      "Bize katılmak ve yardımcı olmak istiyorsanız Discord kanalımıza butondan katılabilirsiniz",
+    link: `https://discord.gg/HjgheqhmeK`,
+  },
+  {
+    Title: "Github",
+    icon: SiGithub,
+    Description:
+      "Projemizin incelemesine ve detaylarına github üzerinden ulaşabilirsiniz.",
+    link: "https://github.com/afet-yonetim-sistemi",
+  },
+];
 
 const Container = styled("main", {
   display: "flex",
@@ -35,7 +53,48 @@ const Section = styled("section", {
   },
 });
 
-const TechStack = styled(Section, {});
+const LandingCardContainer = styled("div", {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(25em, 1fr))",
+  justifyItems: "center",
+  gap: "1rem",
+});
+
+const LandingCardMain = styled("div", {
+  display: "flex",
+  flexDirection: "column",
+  gap: "1rem",
+  padding: "1rem",
+  backgroundColor: "rgb(27,41,64)",
+  width: "25em",
+  borderRadius: "0.5rem",
+  color: "white",
+  boxShadow: "0px 5px 15px -5px rgba(0, 0, 0, 0.1)",
+});
+
+type LandingCardProps = {
+  title: string;
+  description: string;
+  icon: IconType;
+  link: string;
+};
+
+const LandingCard = ({ title, description, icon, link }: LandingCardProps) => {
+  const Icon = styled(icon, {
+    fontSize: "2rem",
+  });
+  return (
+    <a href={link} target="_blank">
+      <LandingCardMain>
+        <h2 style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
+          <Icon />
+          {title}
+        </h2>
+        <p>{description}</p>
+      </LandingCardMain>
+    </a>
+  );
+};
 
 export default function Home() {
   return (
@@ -90,6 +149,17 @@ export default function Home() {
               <li>- Test: `-` </li>
             </ul>
           </Section>
+          <LandingCardContainer>
+            {data.map((item) => (
+              <LandingCard
+                key={item.Title}
+                title={item.Title}
+                description={item.Description}
+                icon={item.icon}
+                link={item.link}
+              />
+            ))}
+          </LandingCardContainer>
         </ArticleBody>
       </Container>
     </>
